@@ -1,4 +1,4 @@
-const taskFactory = function (newName, newDescription, newDueDate, newPriority, newNotes) {
+const taskFactory = (newName, newDescription, newDueDate, newPriority, newNotes) => {
     // represents a task object
 
     let taskName = newName
