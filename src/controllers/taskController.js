@@ -1,6 +1,7 @@
 import { taskFactory } from "../models/taskModel"
+import { taskView } from "../views/taskview"
 
-const taskControllerFactory = () => {
+const taskController = (() => {
 
     const getProject = () => {
         // get the active project on the page
@@ -26,6 +27,6 @@ const taskControllerFactory = () => {
     return {
         createTask, deleteTask, updateTask
     }
-}
+})()
 
-export { taskControllerFactory }
+export { taskController }

@@ -1,7 +1,15 @@
+import { projectRepoModel } from "../models/projectRepoModel"
 import { projectFactory } from "../models/projectModel"
+import { projectView } from "../views/projectView"
 
-const projectControllerFactory = () => {
+// project controller module
+const projectController = (() => {
 
+    const initProject = () => {
+        
+        projectView.createProjectContainerHeader()
+    }
+    
     const createProject = (projectName) => {
         projectFactory(projectName)
     }
@@ -11,8 +19,8 @@ const projectControllerFactory = () => {
     }
 
     return {
-        createProject, deleteProject
+        initProject, createProject, deleteProject
     }
-}
+})()
 
-export { projectControllerFactory }
+export { projectController }
