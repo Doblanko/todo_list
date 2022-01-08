@@ -3,8 +3,9 @@
 const projectView = (() => {
     
     const initializeProjectView = () => {
-        const content = document.querySelector('.content')
+        const mainContent = document.querySelector('.main-content-container')
         const projectContainer = document.createElement('div')
+        projectContainer.classList.add('projects-container')
 
         // --- Create the project container header --- //
 
@@ -13,7 +14,7 @@ const projectView = (() => {
         const addProjectBtn = document.createElement('button')
 
         // add classes to elements
-        projectContainerHeader.classList.add('project-header-container')
+        projectContainerHeader.classList.add('projects-header-container')
         addProjectBtn.classList.add('add-project-button')
         
         // set text content
@@ -24,12 +25,12 @@ const projectView = (() => {
         projectContainerHeader.append(title)
         projectContainerHeader.append(addProjectBtn)
         projectContainer.append(projectContainerHeader)
-        content.append(projectContainer)
+        mainContent.append(projectContainer)
 
         // --- Create the project body container --- //
         
         const projectBodyContainer = document.createElement('div')
-        projectBodyContainer.classList.add("project-body-containter")
+        projectBodyContainer.classList.add("project-body-container")
         
         projectContainer.append(projectBodyContainer)
 
@@ -73,7 +74,7 @@ const projectView = (() => {
         projectForm.append(buttonContainer)
 
         projectFormPage.append(projectForm)
-        content.append(projectFormPage)
+        mainContent.append(projectFormPage)
 
     }
 

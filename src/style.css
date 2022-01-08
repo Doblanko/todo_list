@@ -1,17 +1,23 @@
 /* ----- Overall ----- */
 * {
+    /* wipe the margin and padding on every element to start fresh */
     margin: 0;
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
 .content {
-    font-family: sans-serif;
+    height: 100%;
+    font-family: sans-serif; 
   }
 
 /* ----- Title Bar Section ----- */
 .top-bar {
     width: 100%;
     height: 70px;
+    box-sizing: border-box;
     background-color: #0d122bd1;
 
     line-height: 70px;
@@ -20,6 +26,41 @@
 h1 {
     color: white;
     margin-left: 25px;
+}
+
+/* ----- Main Content ----- */
+
+.main-content-container {
+    display: flex;
+    flex-direction: row;
+
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.projects-container {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.projects-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    align-items: center;
+
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
 }
 
 /* ----- Form Page Content ----- */
