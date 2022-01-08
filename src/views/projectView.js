@@ -1,10 +1,10 @@
 
 
 const projectView = (() => {
-    const body = document.getElementsByTagName('body')[0]
-    const projectContainer = document.createElement('div')
-
+    
     const initializeProjectView = () => {
+        const content = document.querySelector('.content')
+        const projectContainer = document.createElement('div')
 
         // --- Create the project container header --- //
 
@@ -24,7 +24,7 @@ const projectView = (() => {
         projectContainerHeader.append(title)
         projectContainerHeader.append(addProjectBtn)
         projectContainer.append(projectContainerHeader)
-        body.append(projectContainer)
+        content.append(projectContainer)
 
         // --- Create the project body container --- //
         
@@ -73,7 +73,7 @@ const projectView = (() => {
         projectForm.append(buttonContainer)
 
         projectFormPage.append(projectForm)
-        body.append(projectFormPage)
+        content.append(projectFormPage)
 
     }
 
