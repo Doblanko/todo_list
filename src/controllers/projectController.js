@@ -7,7 +7,7 @@ const projectController = (() => {
 
     const initProject = () => {
         
-        projectView.createProjectContainerHeader()
+        projectView.initializeProjectView()
     }
     
     const createProject = (projectName) => {
