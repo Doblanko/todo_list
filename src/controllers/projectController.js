@@ -8,10 +8,29 @@ const projectController = (() => {
     const initProject = () => {
         
         projectView.initializeProjectView()
+
+        // ----- Add event listeners ----- //
+        const addProjectBtn = document.querySelector('.add-project-button')
+        addProjectBtn.addEventListener('click', openNewProjectForm)
+        
+        let submitBtn = document.querySelector('.project-submit-btn')
+        submitBtn.addEventListener('click', createProject)
+
+        let cancelBtn = document.querySelector('.project-cancel-btn')
+        cancelBtn.addEventListener('click', closeNewProjectForm)
+
     }
     
     const createProject = (projectName) => {
-        projectFactory(projectName)
+        
+    }
+
+    const openNewProjectForm = () => {
+        projectView.openForm()
+    }
+
+    const closeNewProjectForm = () => {
+        projectView.closeForm()
     }
 
     const deleteProject= (projectName) => {

@@ -37,28 +37,28 @@ const projectView = (() => {
         const projectForm = document.createElement('form')
 
         projectFormPage.classList.add('project-form-page')
-        projectFormPage.classList.add('hidden')
+        projectFormPage.style.display = 'none'
         projectForm.name = 'ProjectForm'
 
-        let projectNameLabel = document.createElement('label')
+        const projectNameLabel = document.createElement('label')
         projectNameLabel.setAttribute('for', 'name')
         projectNameLabel.innerHTML = 'Project Name: '
         projectForm.append(projectNameLabel)
 
-        let projectNameInput = document.createElement('input')
+        const projectNameInput = document.createElement('input')
         projectNameInput.setAttribute('type', 'text')
         projectNameInput.setAttribute('name', 'name')
         projectNameInput.setAttribute('id', 'name')
 
-        let buttonContainer = document.createElement('div')
+        const buttonContainer = document.createElement('div')
         buttonContainer.classList.add('button-container')
 
-        let submitBtn = document.createElement('button')
+        const submitBtn = document.createElement('button')
         submitBtn.setAttribute('type', 'button')
         submitBtn.classList.add('project-submit-btn')
         submitBtn.innerHTML = 'Submit'
 
-        let cancelBtn = document.createElement('button')
+        const cancelBtn = document.createElement('button')
         cancelBtn.setAttribute('type', 'button')
         cancelBtn.classList.add('project-cancel-btn')
         cancelBtn.innerHTML = 'Cancel'
@@ -72,13 +72,26 @@ const projectView = (() => {
 
     }
 
-    
+    const openForm = () => {
+        // This function makes the project form visible
+        const projectFormPage = document.querySelector('.project-form-page')
+        projectFormPage.style.display = 'block'
+    }
+
+    const closeForm = () => {
+        const projectFormPage = document.querySelector('.project-form-page')
+        projectFormPage.style.display = 'none'
+    }
+
+    const clearFormFields = () => {
+
+    }
 
     const render = () => {
 
     }
 
-    return { initializeProjectView }
+    return { initializeProjectView, openForm, closeForm }
 })()
 
 export { projectView }
