@@ -1,3 +1,5 @@
+
+
 const projectView = (() => {
     const body = document.getElementsByTagName('body')[0]
     const projectContainer = document.createElement('div')
@@ -41,26 +43,29 @@ const projectView = (() => {
         projectForm.name = 'ProjectForm'
 
         const projectNameLabel = document.createElement('label')
-        projectNameLabel.setAttribute('for', 'name')
-        projectNameLabel.innerHTML = 'Project Name: '
+        projectNameLabel.setAttribute('for', 'new-project-name')
+        projectNameLabel.innerHTML = 'Project Name:'
         projectForm.append(projectNameLabel)
 
         const projectNameInput = document.createElement('input')
         projectNameInput.setAttribute('type', 'text')
-        projectNameInput.setAttribute('name', 'name')
-        projectNameInput.setAttribute('id', 'name')
+        projectNameInput.setAttribute('name', 'new-project-name')
+        projectNameInput.setAttribute('id', 'new-project-name')
+        projectForm.append(projectNameInput)
 
         const buttonContainer = document.createElement('div')
         buttonContainer.classList.add('button-container')
 
         const submitBtn = document.createElement('button')
         submitBtn.setAttribute('type', 'button')
-        submitBtn.classList.add('project-submit-btn')
+        submitBtn.setAttribute('id', 'project-submit-btn')
+        submitBtn.classList.add('form-btn')
         submitBtn.innerHTML = 'Submit'
 
         const cancelBtn = document.createElement('button')
         cancelBtn.setAttribute('type', 'button')
-        cancelBtn.classList.add('project-cancel-btn')
+        cancelBtn.setAttribute('id', 'project-cancel-btn')
+        cancelBtn.classList.add('form-btn')
         cancelBtn.innerHTML = 'Cancel'
 
         buttonContainer.append(submitBtn)

@@ -13,10 +13,10 @@ const projectController = (() => {
         const addProjectBtn = document.querySelector('.add-project-button')
         addProjectBtn.addEventListener('click', openNewProjectForm)
         
-        let submitBtn = document.querySelector('.project-submit-btn')
+        let submitBtn = document.querySelector('#project-submit-btn')
         submitBtn.addEventListener('click', createProject)
 
-        let cancelBtn = document.querySelector('.project-cancel-btn')
+        let cancelBtn = document.querySelector('#project-cancel-btn')
         cancelBtn.addEventListener('click', closeNewProjectForm)
 
     }
