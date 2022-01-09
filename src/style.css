@@ -92,7 +92,7 @@ form {
     align-items: flex-start;
     justify-content: space-evenly;
 
-    height: 500px;
+    top: 50%;
     width: 350px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -105,18 +105,62 @@ form {
 }
 
 label {  
-    font-size: larger
+    font-size: larger;
+    margin: 5px;
   }
 
 input {
-    width: 300px;
+    width: 90%;
+    box-sizing: border-box;
+
     height: 20px;
     border: none;
     border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 5px auto;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+textarea {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 5px auto;
+    padding: 5px;
+
+    border: none;
+    border-radius: 5px; 
+    resize: vertical;
+}
+.due-date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+#new-due-date {
+    /* all other properties specified by input above */
+    width: 140px;
+    margin-right: 16.5px;
+}
+
+.select-priority-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.select-priority {
+    border: none;
+    margin-right: 16.5px;
+    border-radius: 5px;
+    padding: 1px 3px;
 }
 
 .button-container {
@@ -124,7 +168,6 @@ input {
 }
 
 .form-btn {
-    
     display: inline-block;
     border-radius: 10px;
     border: none;
@@ -134,8 +177,7 @@ input {
     font-weight: bold;
     font-size: large;
 
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 5px 10px;
     padding: 5px 10px;
 }
 

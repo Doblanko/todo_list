@@ -63,23 +63,30 @@ const taskView = (() => {
         descriptionInputArea.setAttribute("id", "new-description")
         taskForm.append(descriptionInputArea);
 
+        const dueDateContainer = document.createElement('div')
+        dueDateContainer.classList.add('due-date-container')
         const dueDateLabel = document.createElement('label')
-        dueDateLabel.innerHTML = 'Select Due Date:'
+        dueDateLabel.innerHTML = 'Due Date:'
         dueDateLabel.setAttribute('for', 'new-due-date')
-        taskForm.append(dueDateLabel)
+        dueDateContainer.append(dueDateLabel)
 
         const dueDateInput = document.createElement('input')
         dueDateInput.setAttribute('type', 'date')
         dueDateInput.setAttribute('name', 'new-due-date')
         dueDateInput.setAttribute('id', 'new-due-date')
         dueDateInput.setAttribute('value', 'yyyy-dd-mm')
-        taskForm.append(dueDateInput)
+        dueDateContainer.append(dueDateInput)
+        taskForm.append(dueDateContainer)
+
+        const selectPriorityContainer = document.createElement('div')
 
         const priorityLabel = document.createElement('label')
-        priorityLabel.innerHTML = 'Select Priority:'
+        priorityLabel.innerHTML = 'Priority:'
         priorityLabel.setAttribute('for', 'select-priority')
-        taskForm.append(priorityLabel)
+        selectPriorityContainer.append(priorityLabel)
+        
 
+        selectPriorityContainer.classList.add('select-priority-container')
         const selectPriority = document.createElement('select')
         const low = document.createElement('option')
         const normal = document.createElement('option')
@@ -87,6 +94,7 @@ const taskView = (() => {
         selectPriority.setAttribute('name', 'select-priority')
         selectPriority.setAttribute('id', 'select-priority')
         selectPriority.classList.add('select-priority')
+        
 
         low.innerHTML = 'Low'
         normal.innerHTML = 'Normal'
@@ -95,7 +103,8 @@ const taskView = (() => {
         selectPriority.append(low)
         selectPriority.append(normal)
         selectPriority.append(high)
-        taskForm.append(selectPriority)
+        selectPriorityContainer.append(selectPriority)
+        taskForm.append(selectPriorityContainer)
 
         const notesLabel = document.createElement('label')
         notesLabel.innerHTML = 'Notes:'
