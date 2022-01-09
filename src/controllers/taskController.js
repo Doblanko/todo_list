@@ -1,5 +1,7 @@
-import { taskFactory } from "../models/taskModel"
+import { taskModel } from "../models/taskModel"
 import { taskView } from "../views/taskView"
+import { projectModel } from "../models/projectModel"
+import { projectRepoModel } from "../models/projectRepoModel"
 
 const taskController = (() => {
 
@@ -27,17 +29,20 @@ const taskController = (() => {
         taskView.closeForm()
     }
     
-    const getProject = () => {
-        // get the active project on the page
-    }
 
-    const createTask = (newTaskName, newDescription, newDueDate, newPriority, newNotes) => {
-        // create a new task and add to the project task array
+    const createTask = () => {
+        // create a new task and add to the project task array when then submit button is clicked
+        let activeProject = projectRepoModel.getActiveProject()
 
-        let project = getProject()
-        let task = taskFactory(newTaskName, newDescription, newDueDate, newPriority, newNotes)
-        project.tasks.push(task)
+        let newTaskName = document.forms['TaskForm']['new-task-name'].value
+        let newDescription = document.forms['TaskForm']['new-description'].value
+        let newDueDate = document.forms['TaskForm']['new-due-date'].value
+        let newPriority = document.forms['TaskForm']['select-priority'].value
+        let newNotes = document.forms['TaskForm']['new-notes'].value
 
+        const task = taskModel(newTaskName, newDescription, newDueDate, newPriority, newNotes)
+        activeProject.addTask(task)
+        _closeNewTaskForm()
     }
 
     const updateTask = () => {

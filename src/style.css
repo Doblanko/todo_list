@@ -78,14 +78,30 @@ h1 {
     padding: 5px 20px;
 }
 
+.add-project-btn:hover, .add-task-btn:hover {
+    background-color: #363e67d1;
+}
+
 /* ----- Project Entry Container ----- */
-.project-entry-container {
+.project-list-item {
+    list-style-type: none;
     border: solid 2px #0d122bd1;
     border-radius: 5px;
     margin: 10px 35px;
     padding: 5px;
     text-align: center;
     font-size: large;
+}
+
+.project-list-item.clicked {
+    background-color: #0d122bd1;
+    color: white;
+}
+
+.project-list-item:hover {
+    background-color: #0d122bd1;
+    opacity: 0.8;
+    color: white;
 }
 
 /* ----- Form Page Content ----- */

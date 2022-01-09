@@ -1,4 +1,4 @@
-const taskFactory = (newName, newDescription, newDueDate, newPriority, newNotes) => {
+const taskModel = (newName, newDescription, newDueDate, newPriority, newNotes) => {
     // represents a task object
 
     let taskName = newName
@@ -12,4 +12,4 @@ const taskFactory = (newName, newDescription, newDueDate, newPriority, newNotes)
     }
 }
 
-export {taskFactory}
+export {taskModel}

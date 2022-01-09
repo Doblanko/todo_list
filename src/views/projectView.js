@@ -25,10 +25,13 @@ const projectView = (() => {
         projectContainer.append(projectContainerHeader)
         mainContent.append(projectContainer)
 
-        // --- Create the project body container --- //
+        // --- Create the project body container--- //
         
         const projectBodyContainer = document.createElement('div')
         projectBodyContainer.classList.add("project-body-container")
+        const projectBodyList = document.createElement('ul')
+        projectBodyList.classList.add('project-list')
+        projectBodyContainer.append(projectBodyList)
         
         projectContainer.append(projectBodyContainer)
 
@@ -87,12 +90,13 @@ const projectView = (() => {
         projectFormPage.style.display = 'none'
     }
 
-    const createProject = (name) => {
-        const projectBodyContainer = document.querySelector('.project-body-container')
-        const newProject = document.createElement('div')
-        newProject.classList.add('project-entry-container')
+    const createProject = (name, id) => {
+        const projectList = document.querySelector('.project-list')
+        const newProject = document.createElement('li')
+        newProject.classList.add('project-list-item')
+        newProject.setAttribute('id', `project-${id}`)
         newProject.innerHTML = name
-        projectBodyContainer.append(newProject)
+        projectList.append(newProject)
     }
 
     return { initializeProjectView, openForm, closeForm, createProject }
