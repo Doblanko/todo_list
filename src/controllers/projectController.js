@@ -22,6 +22,7 @@ const projectController = (() => {
     }
     
     const createProject = (projectName) => {
+        projectView.createProject(projectName)
         
     }
 

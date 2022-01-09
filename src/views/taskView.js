@@ -143,6 +143,8 @@ const taskView = (() => {
 
     }
 
+    
+
     const openForm = () => {
         // This function makes the task form visible
         const taskFormPage = document.querySelector('.task-form-page')

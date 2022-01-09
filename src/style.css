@@ -46,8 +46,12 @@ h1 {
 
 .projects-container, .tasks-container {
     height: 100%;
-    width: 100%;
+    width: 33%;
     box-sizing: border-box;
+}
+
+.tasks-container {
+    width: 67%;
 }
 
 .projects-header-container, .tasks-header-container {
@@ -72,6 +76,16 @@ h1 {
     font-size: large;
     text-align: center;
     padding: 5px 20px;
+}
+
+/* ----- Project Entry Container ----- */
+.project-entry-container {
+    border: solid 2px #0d122bd1;
+    border-radius: 5px;
+    margin: 10px 35px;
+    padding: 5px;
+    text-align: center;
+    font-size: large;
 }
 
 /* ----- Form Page Content ----- */

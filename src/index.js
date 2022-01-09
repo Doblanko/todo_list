@@ -32,6 +32,10 @@ const App = (() => {
         
         projectController.initProject()
         taskController.initTask()
+
+        projectController.createProject('Test')
+
+        projectController.createProject('Test2')
     }
     return { initializeApp }
 })()

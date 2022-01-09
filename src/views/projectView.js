@@ -87,15 +87,15 @@ const projectView = (() => {
         projectFormPage.style.display = 'none'
     }
 
-    const clearFormFields = () => {
-
+    const createProject = (name) => {
+        const projectBodyContainer = document.querySelector('.project-body-container')
+        const newProject = document.createElement('div')
+        newProject.classList.add('project-entry-container')
+        newProject.innerHTML = name
+        projectBodyContainer.append(newProject)
     }
 
-    const render = () => {
-
-    }
-
-    return { initializeProjectView, openForm, closeForm }
+    return { initializeProjectView, openForm, closeForm, createProject }
 })()
 
 export { projectView }
