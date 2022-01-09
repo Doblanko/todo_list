@@ -24,14 +24,14 @@ const App = (() => {
         const mainContent = document.createElement('div')
         mainContent.classList.add('main-content-container')
         content.append(mainContent)
-
-        console.log(document.querySelector('body'))
         document.querySelector('body').append(content)
     }
 
     const initializeApp = () => {
         _createWebsite()
+        
         projectController.initProject()
+        taskController.initTask()
     }
     return { initializeApp }
 })()

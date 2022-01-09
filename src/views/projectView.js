@@ -1,5 +1,3 @@
-
-
 const projectView = (() => {
     
     const initializeProjectView = () => {
@@ -15,7 +13,7 @@ const projectView = (() => {
 
         // add classes to elements
         projectContainerHeader.classList.add('projects-header-container')
-        addProjectBtn.classList.add('add-project-button')
+        addProjectBtn.classList.add('add-project-btn')
         
         // set text content
         title.textContent = 'Projects'

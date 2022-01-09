@@ -44,18 +44,17 @@ h1 {
     overflow: hidden;
 }
 
-.projects-container {
+.projects-container, .tasks-container {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
 }
 
-.projects-header-container {
+.projects-header-container, .tasks-header-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    width: 100%;
     align-items: center;
 
     padding-left: 25px;
@@ -63,8 +62,20 @@ h1 {
     padding-top: 10px;
 }
 
+.add-project-btn, .add-task-btn {
+    border: none;
+    border-radius: 10px;
+
+    background-color: #0d122bd1;
+
+    color: white;
+    font-size: large;
+    text-align: center;
+    padding: 5px 20px;
+}
+
 /* ----- Form Page Content ----- */
-.project-form-page {
+.project-form-page, .task-form-page {
     /* Make form hover */
     position: fixed;
     top: 0px;
@@ -81,7 +92,7 @@ form {
     align-items: flex-start;
     justify-content: space-evenly;
 
-    height: 150px;
+    height: 500px;
     width: 350px;
     box-sizing: border-box;
     border-radius: 10px;
@@ -104,7 +115,8 @@ input {
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
-    
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .button-container {

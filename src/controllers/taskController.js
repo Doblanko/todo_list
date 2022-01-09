@@ -1,8 +1,32 @@
 import { taskFactory } from "../models/taskModel"
-import { taskView } from "../views/taskview"
+import { taskView } from "../views/taskView"
 
 const taskController = (() => {
 
+    const initTask = () => {
+        
+        taskView.initializeTaskView()
+
+        // ----- Add event listeners ----- //
+        const addTaskBtn = document.querySelector('.add-task-btn')
+        addTaskBtn.addEventListener('click', _openNewTaskForm)
+        
+        let submitBtn = document.querySelector('#task-submit-btn')
+        submitBtn.addEventListener('click', createTask)
+
+        let cancelBtn = document.querySelector('#task-cancel-btn')
+        cancelBtn.addEventListener('click', _closeNewTaskForm)
+
+    }
+
+    const _openNewTaskForm = () => {
+        taskView.openForm()
+    }
+
+    const _closeNewTaskForm = () => {
+        taskView.closeForm()
+    }
+    
     const getProject = () => {
         // get the active project on the page
     }
@@ -25,7 +49,7 @@ const taskController = (() => {
     }
 
     return {
-        createTask, deleteTask, updateTask
+        initTask, createTask, deleteTask, updateTask
     }
 })()
 
