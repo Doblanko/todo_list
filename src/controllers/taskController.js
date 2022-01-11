@@ -44,7 +44,7 @@ const taskController = (() => {
         activeProject.addTask(task)
         _closeNewTaskForm()
     }
-
+    
     const updateTask = () => {
 
     }
