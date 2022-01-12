@@ -4,6 +4,7 @@ const projectModel = (newName, newID) => {
     let name = newName
     let id = newID
     let tasks = []
+    let taskId = 0
 
     const getName = () => {
         return name
@@ -14,13 +15,20 @@ const projectModel = (newName, newID) => {
     }
 
     const addTask = (task) => {
+        // task is [id, task]
         tasks.push(task)
     }
+
+    const generateTaskId = () => {
+        // return the ID for the task being created and get ready for the next one
+        taskId += 1
+        return taskId - 1
+    } 
 
     const getTasks = () => { return tasks }
 
     return {
-        getName, getId, addTask, getTasks
+        getName, getId, addTask, getTasks, generateTaskId 
     }
 }
 

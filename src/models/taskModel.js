@@ -1,14 +1,15 @@
-const taskModel = (newName, newDescription, newDueDate, newPriority, newNotes) => {
+const taskModel = (newName, newId, newDescription, newDueDate, newPriority, newNotes) => {
     // represents a task object
 
-    let taskName = newName
+    let name = newName
+    let id = newId
     let description = newDescription
     let dueDate = newDueDate
     let priority = newPriority
     let notes = newNotes
 
     return {
-        taskName, description, dueDate, priority, notes
+        name, id, description, dueDate, priority, notes
     }
 }
 

@@ -22,7 +22,12 @@ const taskController = (() => {
     }
 
     const _openNewTaskForm = () => {
-        taskView.openForm()
+        // check if there is an active project
+        if (projectRepoModel.getActiveProject()) {
+            taskView.openForm()
+        } else {
+            alert('Please select a project to add the task to.')
+        }      
     }
 
     const _closeNewTaskForm = () => {
@@ -39,12 +44,19 @@ const taskController = (() => {
         let newDueDate = document.forms['TaskForm']['new-due-date'].value
         let newPriority = document.forms['TaskForm']['select-priority'].value
         let newNotes = document.forms['TaskForm']['new-notes'].value
+        let newId = activeProject.generateTaskId()
 
-        const task = taskModel(newTaskName, newDescription, newDueDate, newPriority, newNotes)
-        activeProject.addTask(task)
+        const newTask = taskModel(newTaskName, newId, newDescription, newDueDate, newPriority, newNotes)
+        activeProject.addTask(newTask)
+
+        _renderTasks(activeProject.getTasks())
         _closeNewTaskForm()
     }
-    
+
+    const _renderTasks = (tasks) => {
+        taskView.renderTasks(tasks)
+    }
+
     const updateTask = () => {
 
     }

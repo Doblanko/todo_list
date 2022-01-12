@@ -104,6 +104,28 @@ h1 {
     color: white;
 }
 
+/* ----- Task Entry Container ----- */
+.task-list-item {
+    list-style-type: none;
+    border: solid 2px #0d122bd1;
+    border-radius: 5px;
+    margin: 10px 35px;
+    padding: 5px;
+    text-align: left;
+    font-size: large;
+}
+
+.task-name {
+    font-size: larger;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
+.task-description, .task-due-date, .task-priority, .task-notes {
+    margin: 3px auto 3px 15px;
+    margin-bottom: 3px;
+}
+
 /* ----- Form Page Content ----- */
 .project-form-page, .task-form-page {
     /* Make form hover */

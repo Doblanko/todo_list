@@ -1,3 +1,5 @@
+import { projectRepoModel } from "../models/projectRepoModel"
+
 const taskView = (() => {
     const initializeTaskView = () => {
         const mainContent = document.querySelector('.main-content-container')
@@ -28,6 +30,9 @@ const taskView = (() => {
         
         const taskBodyContainer = document.createElement('div')
         taskBodyContainer.classList.add("task-body-container")
+        const taskBodyList = document.createElement('ul')
+        taskBodyList.classList.add('task-list')
+        taskBodyContainer.append(taskBodyList)
         
         taskContainer.append(taskBodyContainer)
 
@@ -83,19 +88,18 @@ const taskView = (() => {
         const priorityLabel = document.createElement('label')
         priorityLabel.innerHTML = 'Priority:'
         priorityLabel.setAttribute('for', 'select-priority')
-        selectPriorityContainer.append(priorityLabel)
-        
+        selectPriorityContainer.append(priorityLabel) 
 
         selectPriorityContainer.classList.add('select-priority-container')
         const selectPriority = document.createElement('select')
         const low = document.createElement('option')
         const normal = document.createElement('option')
+        normal.setAttribute('selected', 'true')
         const high = document.createElement('option')
         selectPriority.setAttribute('name', 'select-priority')
         selectPriority.setAttribute('id', 'select-priority')
         selectPriority.classList.add('select-priority')
         
-
         low.innerHTML = 'Low'
         normal.innerHTML = 'Normal'
         high.innerHTML = 'High'
@@ -155,11 +159,45 @@ const taskView = (() => {
         const taskFormPage = document.querySelector('.task-form-page')
         taskFormPage.style.display = 'none'
     }
-    const render = () => {
+    const renderTasks = (tasks) => {
+        const taskList = document.querySelector('.task-list')
+        // clear the task list
+        taskList.innerHTML = ''
+        tasks.forEach(task => {
+            const newTask = document.createElement('li')
+            newTask.classList.add('task-list-item')
+            newTask.setAttribute('id', `task-${task.id}`)
+            
+            const taskName = document.createElement('p')
+            taskName.classList.add('task-name')
+            taskName.innerHTML = `<strong>${task.name}</strong>`
+            newTask.append(taskName)
 
+            const taskDescription = document.createElement('p')
+            taskDescription.classList.add('task-description')
+            taskDescription.innerHTML = `<strong>Description: </strong> ${task.description}`
+            newTask.append(taskDescription)
+
+            const taskDueDate = document.createElement('p')
+            taskDueDate.classList.add('task-due-date')
+            taskDueDate.innerHTML = `<strong>Due Date: </strong> ${task.dueDate}`
+            newTask.append(taskDueDate)
+
+            const taskPriority = document.createElement('p')
+            taskPriority.classList.add('task-priority')
+            taskPriority.innerHTML = `<strong>Priority: </strong> ${task.priority}`
+            newTask.append(taskPriority)
+
+            const taskNotes = document.createElement('p')
+            taskNotes.classList.add('task-notes')
+            taskNotes.innerHTML = `<strong>Notes: </strong> <br> ${task.notes}`
+            newTask.append(taskNotes)
+
+            taskList.append(newTask)
+        })
     }
 
-    return { initializeTaskView, openForm, closeForm }
+    return { initializeTaskView, openForm, closeForm, renderTasks }
 })()
 
 export { taskView }

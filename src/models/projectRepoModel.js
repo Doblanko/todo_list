@@ -12,8 +12,6 @@ const projectRepoModel = (() => {
     
     const setActiveProject = (project) => {
         activeProject = project
-        console.log(project)
-        console.log(activeProject)
     }
 
     const addProject = (projectId, project) => {
