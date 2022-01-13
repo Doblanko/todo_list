@@ -1,105 +1,105 @@
 const projectView = (() => {
-    
-    const initializeProjectView = () => {
-        const mainContent = document.querySelector('.main-content-container')
-        const projectContainer = document.createElement('div')
-        projectContainer.classList.add('projects-container')
+  const initializeProjectView = () => {
+    const mainContent = document.querySelector('.main-content-container');
+    const projectContainer = document.createElement('div');
+    projectContainer.classList.add('projects-container');
 
-        // --- Create the project container header --- //
+    // --- Create the project container header --- //
 
-        const projectContainerHeader = document.createElement('div')
-        const title = document.createElement('h2')
-        const addProjectBtn = document.createElement('button')
+    const projectContainerHeader = document.createElement('div');
+    const title = document.createElement('h2');
+    const addProjectBtn = document.createElement('button');
 
-        // add classes to elements
-        projectContainerHeader.classList.add('projects-header-container')
-        addProjectBtn.classList.add('add-project-btn')
-        
-        // set text content
-        title.textContent = 'Projects'
-        addProjectBtn.textContent = 'Add Project'
+    // add classes to elements
+    projectContainerHeader.classList.add('projects-header-container');
+    addProjectBtn.classList.add('add-project-btn');
 
-        // combine elements
-        projectContainerHeader.append(title)
-        projectContainerHeader.append(addProjectBtn)
-        projectContainer.append(projectContainerHeader)
-        mainContent.append(projectContainer)
+    // set text content
+    title.textContent = 'Projects';
+    addProjectBtn.textContent = 'Add Project';
 
-        // --- Create the project body container--- //
-        
-        const projectBodyContainer = document.createElement('div')
-        projectBodyContainer.classList.add("project-body-container")
-        const projectBodyList = document.createElement('ul')
-        projectBodyList.classList.add('project-list')
-        projectBodyContainer.append(projectBodyList)
-        
-        projectContainer.append(projectBodyContainer)
+    // combine elements
+    projectContainerHeader.append(title);
+    projectContainerHeader.append(addProjectBtn);
+    projectContainer.append(projectContainerHeader);
+    mainContent.append(projectContainer);
 
-        // --- Create Project Intro Form --- //
+    // --- Create the project body container--- //
 
-        const projectFormPage = document.createElement('div')
-        const projectForm = document.createElement('form')
+    const projectBodyContainer = document.createElement('div');
+    projectBodyContainer.classList.add('project-body-container');
+    const projectBodyList = document.createElement('ul');
+    projectBodyList.classList.add('project-list');
+    projectBodyContainer.append(projectBodyList);
 
-        projectFormPage.classList.add('project-form-page')
-        projectFormPage.style.display = 'none'
-        projectForm.name = 'ProjectForm'
+    projectContainer.append(projectBodyContainer);
 
-        const projectNameLabel = document.createElement('label')
-        projectNameLabel.setAttribute('for', 'new-project-name')
-        projectNameLabel.innerHTML = 'Project Name:'
-        projectForm.append(projectNameLabel)
+    // --- Create Project Intro Form --- //
 
-        const projectNameInput = document.createElement('input')
-        projectNameInput.setAttribute('type', 'text')
-        projectNameInput.setAttribute('name', 'new-project-name')
-        projectNameInput.setAttribute('id', 'new-project-name')
-        projectForm.append(projectNameInput)
+    const projectFormPage = document.createElement('div');
+    const projectForm = document.createElement('form');
 
-        const buttonContainer = document.createElement('div')
-        buttonContainer.classList.add('button-container')
+    projectFormPage.classList.add('project-form-page');
+    projectFormPage.style.display = 'none';
+    projectForm.name = 'ProjectForm';
 
-        const submitBtn = document.createElement('button')
-        submitBtn.setAttribute('type', 'button')
-        submitBtn.setAttribute('id', 'project-submit-btn')
-        submitBtn.classList.add('form-btn')
-        submitBtn.innerHTML = 'Submit'
+    const projectNameLabel = document.createElement('label');
+    projectNameLabel.setAttribute('for', 'new-project-name');
+    projectNameLabel.innerHTML = 'Project Name:';
+    projectForm.append(projectNameLabel);
 
-        const cancelBtn = document.createElement('button')
-        cancelBtn.setAttribute('type', 'button')
-        cancelBtn.setAttribute('id', 'project-cancel-btn')
-        cancelBtn.classList.add('form-btn')
-        cancelBtn.innerHTML = 'Cancel'
+    const projectNameInput = document.createElement('input');
+    projectNameInput.setAttribute('type', 'text');
+    projectNameInput.setAttribute('name', 'new-project-name');
+    projectNameInput.setAttribute('id', 'new-project-name');
+    projectForm.append(projectNameInput);
 
-        buttonContainer.append(submitBtn)
-        buttonContainer.append(cancelBtn)
-        projectForm.append(buttonContainer)
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
 
-        projectFormPage.append(projectForm)
-        mainContent.append(projectFormPage)
+    const submitBtn = document.createElement('button');
+    submitBtn.setAttribute('type', 'button');
+    submitBtn.setAttribute('id', 'project-submit-btn');
+    submitBtn.classList.add('form-btn');
+    submitBtn.innerHTML = 'Submit';
 
-    }
+    const cancelBtn = document.createElement('button');
+    cancelBtn.setAttribute('type', 'button');
+    cancelBtn.setAttribute('id', 'project-cancel-btn');
+    cancelBtn.classList.add('form-btn');
+    cancelBtn.innerHTML = 'Cancel';
 
-    const openForm = () => {
-        // This function makes the project form visible
-        const projectFormPage = document.querySelector('.project-form-page')
-        projectFormPage.style.display = 'block'
-    }
+    buttonContainer.append(submitBtn);
+    buttonContainer.append(cancelBtn);
+    projectForm.append(buttonContainer);
 
-    const closeForm = () => {
-        const projectFormPage = document.querySelector('.project-form-page')
-        projectFormPage.style.display = 'none'
-    }
+    projectFormPage.append(projectForm);
+    mainContent.append(projectFormPage);
+  };
 
-    const createProject = (name, id) => {
-        const projectList = document.querySelector('.project-list')
-        const newProject = document.createElement('li')
-        newProject.classList.add('project-list-item')
-        newProject.setAttribute('id', `project-${id}`)
-        newProject.innerHTML = name
-        projectList.append(newProject)
-    }
+  const openForm = () => {
+    // This function makes the project form visible
+    const projectFormPage = document.querySelector('.project-form-page');
+    projectFormPage.style.display = 'block';
+  };
 
-    return { initializeProjectView, openForm, closeForm, createProject }
-})()
+  const closeForm = () => {
+    const projectFormPage = document.querySelector('.project-form-page');
+    projectFormPage.style.display = 'none';
+  };
 
-export { projectView }
+  const createProject = (name, id) => {
+    const projectList = document.querySelector('.project-list');
+    const newProject = document.createElement('li');
+    newProject.classList.add('project-list-item');
+    newProject.setAttribute('id', `project-${id}`);
+    newProject.innerHTML = name;
+    projectList.append(newProject);
+  };
+
+  return {
+    initializeProjectView, openForm, closeForm, createProject,
+  };
+})();
+
+export default projectView;

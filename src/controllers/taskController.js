@@ -1,73 +1,67 @@
-import { taskModel } from "../models/taskModel"
-import { taskView } from "../views/taskView"
-import { projectModel } from "../models/projectModel"
-import { projectRepoModel } from "../models/projectRepoModel"
+import projectRepoModel from '../models/projectRepoModel';
+import taskModel from '../models/taskModel';
+import taskView from '../views/taskView';
 
 const taskController = (() => {
+  const renderTasks = (tasks) => {
+    taskView.renderTasks(tasks);
+  };
 
-    const initTask = () => {
-        
-        taskView.initializeTaskView()
-
-        // ----- Add event listeners ----- //
-        const addTaskBtn = document.querySelector('.add-task-btn')
-        addTaskBtn.addEventListener('click', _openNewTaskForm)
-        
-        let submitBtn = document.querySelector('#task-submit-btn')
-        submitBtn.addEventListener('click', createTask)
-
-        let cancelBtn = document.querySelector('#task-cancel-btn')
-        cancelBtn.addEventListener('click', _closeNewTaskForm)
-
+  const openNewTaskForm = () => {
+    // check if there is an active project
+    if (projectRepoModel.getActiveProject()) {
+      taskView.openForm();
+    } else {
+      alert('Please select a project to add the task to.');
     }
+  };
 
-    const _openNewTaskForm = () => {
-        // check if there is an active project
-        if (projectRepoModel.getActiveProject()) {
-            taskView.openForm()
-        } else {
-            alert('Please select a project to add the task to.')
-        }      
-    }
+  const closeNewTaskForm = () => {
+    taskView.closeForm();
+  };
 
-    const _closeNewTaskForm = () => {
-        taskView.closeForm()
-    }
-    
+  const createTask = () => {
+    // create a new task and add to the project task array when then submit button is clicked
+    const activeProject = projectRepoModel.getActiveProject();
 
-    const createTask = () => {
-        // create a new task and add to the project task array when then submit button is clicked
-        let activeProject = projectRepoModel.getActiveProject()
+    const newTaskName = document.forms.TaskForm['new-task-name'].value;
+    const newDescription = document.forms.TaskForm['new-description'].value;
+    const newDueDate = document.forms.TaskForm['new-due-date'].value;
+    const newPriority = document.forms.TaskForm['select-priority'].value;
+    const newNotes = document.forms.TaskForm['new-notes'].value;
+    const newId = activeProject.generateTaskId();
 
-        let newTaskName = document.forms['TaskForm']['new-task-name'].value
-        let newDescription = document.forms['TaskForm']['new-description'].value
-        let newDueDate = document.forms['TaskForm']['new-due-date'].value
-        let newPriority = document.forms['TaskForm']['select-priority'].value
-        let newNotes = document.forms['TaskForm']['new-notes'].value
-        let newId = activeProject.generateTaskId()
+    const newTask = taskModel(
+      newTaskName,
+      newId,
+      newDescription,
+      newDueDate,
+      newPriority,
+      newNotes,
+    );
+    activeProject.addTask(newTask);
 
-        const newTask = taskModel(newTaskName, newId, newDescription, newDueDate, newPriority, newNotes)
-        activeProject.addTask(newTask)
+    renderTasks(activeProject.getTasks());
+    closeNewTaskForm();
+  };
 
-        _renderTasks(activeProject.getTasks())
-        _closeNewTaskForm()
-    }
+  const initTask = () => {
+    taskView.initializeTaskView();
 
-    const _renderTasks = (tasks) => {
-        taskView.renderTasks(tasks)
-    }
+    // ----- Add event listeners ----- //
+    const addTaskBtn = document.querySelector('.add-task-btn');
+    addTaskBtn.addEventListener('click', openNewTaskForm);
 
-    const updateTask = () => {
+    const submitBtn = document.querySelector('#task-submit-btn');
+    submitBtn.addEventListener('click', createTask);
 
-    }
+    const cancelBtn = document.querySelector('#task-cancel-btn');
+    cancelBtn.addEventListener('click', closeNewTaskForm);
+  };
 
-    const deleteTask = () => {
+  return {
+    initTask, createTask,
+  };
+})();
 
-    }
-
-    return {
-        initTask, createTask, deleteTask, updateTask
-    }
-})()
-
-export { taskController }
+export default taskController;

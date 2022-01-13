@@ -1,203 +1,199 @@
-import { projectRepoModel } from "../models/projectRepoModel"
-
 const taskView = (() => {
-    const initializeTaskView = () => {
-        const mainContent = document.querySelector('.main-content-container')
-        const taskContainer = document.createElement('div')
-        taskContainer.classList.add('tasks-container')
+  const initializeTaskView = () => {
+    const mainContent = document.querySelector('.main-content-container');
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('tasks-container');
 
-        // --- Create the task container header --- //
+    // --- Create the task container header --- //
 
-        const taskContainerHeader = document.createElement('div')
-        const title = document.createElement('h2')
-        const addTaskBtn = document.createElement('button')
+    const taskContainerHeader = document.createElement('div');
+    const title = document.createElement('h2');
+    const addTaskBtn = document.createElement('button');
 
-        // add classes to elements
-        taskContainerHeader.classList.add('tasks-header-container')
-        addTaskBtn.classList.add('add-task-btn')
-        
-        // set text content
-        title.textContent = 'Tasks'
-        addTaskBtn.textContent = 'Add Task'
+    // add classes to elements
+    taskContainerHeader.classList.add('tasks-header-container');
+    addTaskBtn.classList.add('add-task-btn');
 
-        // combine elements
-        taskContainerHeader.append(title)
-        taskContainerHeader.append(addTaskBtn)
-        taskContainer.append(taskContainerHeader)
-        mainContent.append(taskContainer)
+    // set text content
+    title.textContent = 'Tasks';
+    addTaskBtn.textContent = 'Add Task';
 
-        // --- Create the task body container --- //
-        
-        const taskBodyContainer = document.createElement('div')
-        taskBodyContainer.classList.add("task-body-container")
-        const taskBodyList = document.createElement('ul')
-        taskBodyList.classList.add('task-list')
-        taskBodyContainer.append(taskBodyList)
-        
-        taskContainer.append(taskBodyContainer)
+    // combine elements
+    taskContainerHeader.append(title);
+    taskContainerHeader.append(addTaskBtn);
+    taskContainer.append(taskContainerHeader);
+    mainContent.append(taskContainer);
 
-        // --- Create Task Intro Form --- //
+    // --- Create the task body container --- //
 
-        const taskFormPage = document.createElement('div')
-        const taskForm = document.createElement('form')
+    const taskBodyContainer = document.createElement('div');
+    taskBodyContainer.classList.add('task-body-container');
+    const taskBodyList = document.createElement('ul');
+    taskBodyList.classList.add('task-list');
+    taskBodyContainer.append(taskBodyList);
 
-        taskFormPage.classList.add('task-form-page')
-        taskFormPage.style.display = 'none'
-        taskForm.name = 'TaskForm'
+    taskContainer.append(taskBodyContainer);
 
-        const taskNameLabel = document.createElement('label')
-        taskNameLabel.setAttribute('for', 'new-task-name')
-        taskNameLabel.innerHTML = 'Task Name:'
-        taskForm.append(taskNameLabel)
+    // --- Create Task Intro Form --- //
 
-        const taskNameInput = document.createElement('input')
-        taskNameInput.setAttribute('type', 'text')
-        taskNameInput.setAttribute('name', 'new-task-name')
-        taskNameInput.setAttribute('id', 'new-task-name')
-        taskForm.append(taskNameInput)
+    const taskFormPage = document.createElement('div');
+    const taskForm = document.createElement('form');
 
-        const descriptionLabel = document.createElement('label')
-        descriptionLabel.innerHTML = 'Description: '
-        descriptionLabel.setAttribute('for', 'new-description')
-        taskForm.append(descriptionLabel)
+    taskFormPage.classList.add('task-form-page');
+    taskFormPage.style.display = 'none';
+    taskForm.name = 'TaskForm';
 
-        const descriptionInputArea = document.createElement('textarea')
-        descriptionInputArea.setAttribute("rows", "10");
-        descriptionInputArea.setAttribute("cols", "40");
-        descriptionInputArea.setAttribute("name", "new-description")
-        descriptionInputArea.setAttribute("id", "new-description")
-        taskForm.append(descriptionInputArea);
+    const taskNameLabel = document.createElement('label');
+    taskNameLabel.setAttribute('for', 'new-task-name');
+    taskNameLabel.innerHTML = 'Task Name:';
+    taskForm.append(taskNameLabel);
 
-        const dueDateContainer = document.createElement('div')
-        dueDateContainer.classList.add('due-date-container')
-        const dueDateLabel = document.createElement('label')
-        dueDateLabel.innerHTML = 'Due Date:'
-        dueDateLabel.setAttribute('for', 'new-due-date')
-        dueDateContainer.append(dueDateLabel)
+    const taskNameInput = document.createElement('input');
+    taskNameInput.setAttribute('type', 'text');
+    taskNameInput.setAttribute('name', 'new-task-name');
+    taskNameInput.setAttribute('id', 'new-task-name');
+    taskForm.append(taskNameInput);
 
-        const dueDateInput = document.createElement('input')
-        dueDateInput.setAttribute('type', 'date')
-        dueDateInput.setAttribute('name', 'new-due-date')
-        dueDateInput.setAttribute('id', 'new-due-date')
-        dueDateInput.setAttribute('value', 'yyyy-dd-mm')
-        dueDateContainer.append(dueDateInput)
-        taskForm.append(dueDateContainer)
+    const descriptionLabel = document.createElement('label');
+    descriptionLabel.innerHTML = 'Description: ';
+    descriptionLabel.setAttribute('for', 'new-description');
+    taskForm.append(descriptionLabel);
 
-        const selectPriorityContainer = document.createElement('div')
+    const descriptionInputArea = document.createElement('textarea');
+    descriptionInputArea.setAttribute('rows', '10');
+    descriptionInputArea.setAttribute('cols', '40');
+    descriptionInputArea.setAttribute('name', 'new-description');
+    descriptionInputArea.setAttribute('id', 'new-description');
+    taskForm.append(descriptionInputArea);
 
-        const priorityLabel = document.createElement('label')
-        priorityLabel.innerHTML = 'Priority:'
-        priorityLabel.setAttribute('for', 'select-priority')
-        selectPriorityContainer.append(priorityLabel) 
+    const dueDateContainer = document.createElement('div');
+    dueDateContainer.classList.add('due-date-container');
+    const dueDateLabel = document.createElement('label');
+    dueDateLabel.innerHTML = 'Due Date:';
+    dueDateLabel.setAttribute('for', 'new-due-date');
+    dueDateContainer.append(dueDateLabel);
 
-        selectPriorityContainer.classList.add('select-priority-container')
-        const selectPriority = document.createElement('select')
-        const low = document.createElement('option')
-        const normal = document.createElement('option')
-        normal.setAttribute('selected', 'true')
-        const high = document.createElement('option')
-        selectPriority.setAttribute('name', 'select-priority')
-        selectPriority.setAttribute('id', 'select-priority')
-        selectPriority.classList.add('select-priority')
-        
-        low.innerHTML = 'Low'
-        normal.innerHTML = 'Normal'
-        high.innerHTML = 'High'
+    const dueDateInput = document.createElement('input');
+    dueDateInput.setAttribute('type', 'date');
+    dueDateInput.setAttribute('name', 'new-due-date');
+    dueDateInput.setAttribute('id', 'new-due-date');
+    dueDateInput.setAttribute('value', 'yyyy-dd-mm');
+    dueDateContainer.append(dueDateInput);
+    taskForm.append(dueDateContainer);
 
-        selectPriority.append(low)
-        selectPriority.append(normal)
-        selectPriority.append(high)
-        selectPriorityContainer.append(selectPriority)
-        taskForm.append(selectPriorityContainer)
+    const selectPriorityContainer = document.createElement('div');
 
-        const notesLabel = document.createElement('label')
-        notesLabel.innerHTML = 'Notes:'
-        notesLabel.setAttribute('for', 'new-notes')
-        taskForm.append(notesLabel)
-        
-        const notesInputArea = document.createElement('textarea')
-        notesInputArea.setAttribute('rows', '10')
-        notesInputArea.setAttribute('cols', '40')
-        notesInputArea.setAttribute('name', 'new-notes')
-        notesInputArea.setAttribute('id', 'new-notes')
-        taskForm.append(notesInputArea)
+    const priorityLabel = document.createElement('label');
+    priorityLabel.innerHTML = 'Priority:';
+    priorityLabel.setAttribute('for', 'select-priority');
+    selectPriorityContainer.append(priorityLabel);
 
+    selectPriorityContainer.classList.add('select-priority-container');
+    const selectPriority = document.createElement('select');
+    const low = document.createElement('option');
+    const normal = document.createElement('option');
+    normal.setAttribute('selected', 'true');
+    const high = document.createElement('option');
+    selectPriority.setAttribute('name', 'select-priority');
+    selectPriority.setAttribute('id', 'select-priority');
+    selectPriority.classList.add('select-priority');
 
-        const buttonContainer = document.createElement('div')
-        buttonContainer.classList.add('button-container')
+    low.innerHTML = 'Low';
+    normal.innerHTML = 'Normal';
+    high.innerHTML = 'High';
 
-        const submitBtn = document.createElement('button')
-        submitBtn.setAttribute('type', 'button')
-        submitBtn.setAttribute('id', 'task-submit-btn')
-        submitBtn.classList.add('form-btn')
-        submitBtn.innerHTML = 'Submit'
+    selectPriority.append(low);
+    selectPriority.append(normal);
+    selectPriority.append(high);
+    selectPriorityContainer.append(selectPriority);
+    taskForm.append(selectPriorityContainer);
 
-        const cancelBtn = document.createElement('button')
-        cancelBtn.setAttribute('type', 'button')
-        cancelBtn.setAttribute('id', 'task-cancel-btn')
-        cancelBtn.classList.add('form-btn')
-        cancelBtn.innerHTML = 'Cancel'
+    const notesLabel = document.createElement('label');
+    notesLabel.innerHTML = 'Notes:';
+    notesLabel.setAttribute('for', 'new-notes');
+    taskForm.append(notesLabel);
 
-        buttonContainer.append(submitBtn)
-        buttonContainer.append(cancelBtn)
-        taskForm.append(buttonContainer)
+    const notesInputArea = document.createElement('textarea');
+    notesInputArea.setAttribute('rows', '10');
+    notesInputArea.setAttribute('cols', '40');
+    notesInputArea.setAttribute('name', 'new-notes');
+    notesInputArea.setAttribute('id', 'new-notes');
+    taskForm.append(notesInputArea);
 
-        taskFormPage.append(taskForm)
-        mainContent.append(taskFormPage)
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
 
-    }
+    const submitBtn = document.createElement('button');
+    submitBtn.setAttribute('type', 'button');
+    submitBtn.setAttribute('id', 'task-submit-btn');
+    submitBtn.classList.add('form-btn');
+    submitBtn.innerHTML = 'Submit';
 
-    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.setAttribute('type', 'button');
+    cancelBtn.setAttribute('id', 'task-cancel-btn');
+    cancelBtn.classList.add('form-btn');
+    cancelBtn.innerHTML = 'Cancel';
 
-    const openForm = () => {
-        // This function makes the task form visible
-        const taskFormPage = document.querySelector('.task-form-page')
-        taskFormPage.style.display = 'block'
-    }
+    buttonContainer.append(submitBtn);
+    buttonContainer.append(cancelBtn);
+    taskForm.append(buttonContainer);
 
-    const closeForm = () => {
-        const taskFormPage = document.querySelector('.task-form-page')
-        taskFormPage.style.display = 'none'
-    }
-    const renderTasks = (tasks) => {
-        const taskList = document.querySelector('.task-list')
-        // clear the task list
-        taskList.innerHTML = ''
-        tasks.forEach(task => {
-            const newTask = document.createElement('li')
-            newTask.classList.add('task-list-item')
-            newTask.setAttribute('id', `task-${task.id}`)
-            
-            const taskName = document.createElement('p')
-            taskName.classList.add('task-name')
-            taskName.innerHTML = `<strong>${task.name}</strong>`
-            newTask.append(taskName)
+    taskFormPage.append(taskForm);
+    mainContent.append(taskFormPage);
+  };
 
-            const taskDescription = document.createElement('p')
-            taskDescription.classList.add('task-description')
-            taskDescription.innerHTML = `<strong>Description: </strong> ${task.description}`
-            newTask.append(taskDescription)
+  const openForm = () => {
+    // This function makes the task form visible
+    const taskFormPage = document.querySelector('.task-form-page');
+    taskFormPage.style.display = 'block';
+  };
 
-            const taskDueDate = document.createElement('p')
-            taskDueDate.classList.add('task-due-date')
-            taskDueDate.innerHTML = `<strong>Due Date: </strong> ${task.dueDate}`
-            newTask.append(taskDueDate)
+  const closeForm = () => {
+    const taskFormPage = document.querySelector('.task-form-page');
+    taskFormPage.style.display = 'none';
+  };
+  const renderTasks = (tasks) => {
+    const taskList = document.querySelector('.task-list');
+    // clear the task list
+    taskList.innerHTML = '';
+    tasks.forEach((task) => {
+      const newTask = document.createElement('li');
+      newTask.classList.add('task-list-item');
+      newTask.setAttribute('id', `task-${task.id}`);
 
-            const taskPriority = document.createElement('p')
-            taskPriority.classList.add('task-priority')
-            taskPriority.innerHTML = `<strong>Priority: </strong> ${task.priority}`
-            newTask.append(taskPriority)
+      const taskName = document.createElement('p');
+      taskName.classList.add('task-name');
+      taskName.innerHTML = `<strong>${task.name}</strong>`;
+      newTask.append(taskName);
 
-            const taskNotes = document.createElement('p')
-            taskNotes.classList.add('task-notes')
-            taskNotes.innerHTML = `<strong>Notes: </strong> <br> ${task.notes}`
-            newTask.append(taskNotes)
+      const taskDescription = document.createElement('p');
+      taskDescription.classList.add('task-description');
+      taskDescription.innerHTML = `<strong>Description: </strong> ${task.description}`;
+      newTask.append(taskDescription);
 
-            taskList.append(newTask)
-        })
-    }
+      const taskDueDate = document.createElement('p');
+      taskDueDate.classList.add('task-due-date');
+      taskDueDate.innerHTML = `<strong>Due Date: </strong> ${task.dueDate}`;
+      newTask.append(taskDueDate);
 
-    return { initializeTaskView, openForm, closeForm, renderTasks }
-})()
+      const taskPriority = document.createElement('p');
+      taskPriority.classList.add('task-priority');
+      taskPriority.innerHTML = `<strong>Priority: </strong> ${task.priority}`;
+      newTask.append(taskPriority);
 
-export { taskView }
+      const taskNotes = document.createElement('p');
+      taskNotes.classList.add('task-notes');
+      taskNotes.innerHTML = `<strong>Notes: </strong> <br> ${task.notes}`;
+      newTask.append(taskNotes);
+
+      taskList.append(newTask);
+    });
+  };
+
+  return {
+    initializeTaskView, openForm, closeForm, renderTasks,
+  };
+})();
+
+export default taskView;

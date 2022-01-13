@@ -1,82 +1,74 @@
-import { projectRepoModel } from "../models/projectRepoModel"
-import { projectModel } from "../models/projectModel"
-import { projectView } from "../views/projectView"
-import { taskView } from "../views/taskView"
+import projectRepoModel from '../models/projectRepoModel';
+import projectModel from '../models/projectModel';
+import projectView from '../views/projectView';
+import taskView from '../views/taskView';
 
 // project controller module
 const projectController = (() => {
+  const selectProject = (event) => {
+    // event listener for when projects are clicked
 
-    const initProject = () => {
-        
-        projectView.initializeProjectView()
+    // unselect any selected classes
+    const lastSelectedProject = document.querySelector('.clicked');
+    if (lastSelectedProject) { lastSelectedProject.classList.remove('clicked'); }
 
-        // ----- Add event listeners ----- //
-        const addProjectBtn = document.querySelector('.add-project-btn')
-        addProjectBtn.addEventListener('click', _openNewProjectForm)
-        
-        let submitBtn = document.querySelector('#project-submit-btn')
-        submitBtn.addEventListener('click', () => {
-            createProject(document.forms['ProjectForm']['new-project-name'].value)
-        })
+    event.target.classList.add('clicked');
 
-        let cancelBtn = document.querySelector('#project-cancel-btn')
-        cancelBtn.addEventListener('click', _closeNewProjectForm)
+    // the id of list elements are project-id
+    const activeProjectId = Number(event.target.id.substr(-1));
+    projectRepoModel.setActiveProject(projectRepoModel.getProject(activeProjectId));
 
-    }
-    
-    const createProject = (projectName) => {
+    // render the tasks of the new project
+    taskView.renderTasks(projectRepoModel.getProject(activeProjectId).getTasks());
+  };
 
-        // create the project and add to the project repo
-        const newProject = projectModel(projectName, projectRepoModel.generateId())
-        projectRepoModel.addProject(newProject.getId(), newProject)
+  const openNewProjectForm = () => {
+    projectView.openForm();
+  };
 
-        // add the project to the view
-        projectView.createProject(newProject.getName(), newProject.getId())
+  const closeNewProjectForm = () => {
+    projectView.closeForm();
+  };
 
-        // add the event listener for clicks
-        const newProjectView = document.querySelector(`#project-${newProject.getId()}`)
-        newProjectView.addEventListener('click', selectProject)
+  const createProject = (projectName) => {
+    // create the project and add to the project repo
+    const newProject = projectModel(projectName, projectRepoModel.generateId());
+    projectRepoModel.addProject(newProject.getId(), newProject);
 
-        // set as the active project by simulating a click event
-        newProjectView.click()
+    // add the project to the view
+    projectView.createProject(newProject.getName(), newProject.getId());
 
-        // reset the form page and close the form
-        document.forms['ProjectForm'].reset()
-        _closeNewProjectForm()
-    }
+    // add the event listener for clicks
+    const newProjectView = document.querySelector(`#project-${newProject.getId()}`);
+    newProjectView.addEventListener('click', selectProject);
 
-    const selectProject = (event) => {
-        // event listener for when projects are clicked
+    // set as the active project by simulating a click event
+    newProjectView.click();
 
-        // unselect any selected classes
-        const lastSelectedProject = document.querySelector('.clicked')
-        if (lastSelectedProject) { lastSelectedProject.classList.remove('clicked') }
+    // reset the form page and close the form
+    document.forms.ProjectForm.reset();
+    closeNewProjectForm();
+  };
 
-        event.target.classList.add('clicked')
-        
-        // the id of list elements are project-id
-        const activeProjectId = Number(event.target.id.substr(-1))
-        projectRepoModel.setActiveProject(projectRepoModel.getProject(activeProjectId))
+  const initProject = () => {
+    projectView.initializeProjectView();
 
-        // render the tasks of the new project
-        taskView.renderTasks(projectRepoModel.getProject(activeProjectId).getTasks())
-    }
+    // ----- Add event listeners ----- //
+    const addProjectBtn = document.querySelector('.add-project-btn');
+    addProjectBtn.addEventListener('click', openNewProjectForm);
 
-    const _openNewProjectForm = () => {
-        projectView.openForm()
-    }
+    const submitBtn = document.querySelector('#project-submit-btn');
+    submitBtn.addEventListener('click', () => {
+      createProject(document.forms.ProjectForm['new-project-name'].value);
+    });
 
-    const _closeNewProjectForm = () => {
-        projectView.closeForm()
-    }
+    const cancelBtn = document.querySelector('#project-cancel-btn');
+    cancelBtn.addEventListener('click', closeNewProjectForm);
+  };
 
-    const deleteProject= (projectName) => {
+  return {
+    initProject, createProject,
+  };
+})();
 
-    }
-
-    return {
-        initProject, createProject, deleteProject
-    }
-})()
-
-export { projectController }
+export default projectController;

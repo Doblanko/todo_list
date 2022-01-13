@@ -1,35 +1,31 @@
 const projectModel = (newName, newID) => {
-    // Represents a project. Contains the name of the project and tasks.
+  // Represents a project. Contains the name of the project and tasks.
 
-    let name = newName
-    let id = newID
-    let tasks = []
-    let taskId = 0
+  const name = newName;
+  const id = newID;
+  const tasks = [];
+  let taskId = 0;
 
-    const getName = () => {
-        return name
-    }
+  const getName = () => name;
 
-    const getId = () => {
-        return id
-    }
+  const getId = () => id;
 
-    const addTask = (task) => {
-        // task is [id, task]
-        tasks.push(task)
-    }
+  const addTask = (task) => {
+    // task is [id, task]
+    tasks.push(task);
+  };
 
-    const generateTaskId = () => {
-        // return the ID for the task being created and get ready for the next one
-        taskId += 1
-        return taskId - 1
-    } 
+  const generateTaskId = () => {
+    // return the ID for the task being created and get ready for the next one
+    taskId += 1;
+    return taskId - 1;
+  };
 
-    const getTasks = () => { return tasks }
+  const getTasks = () => tasks;
 
-    return {
-        getName, getId, addTask, getTasks, generateTaskId 
-    }
-}
+  return {
+    getName, getId, addTask, getTasks, generateTaskId,
+  };
+};
 
-export { projectModel }
+export default projectModel;

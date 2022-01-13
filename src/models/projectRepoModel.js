@@ -1,28 +1,30 @@
 // simulating a database
 const projectRepoModel = (() => {
-    let id = 0
-    let activeProject = null
-    let projects = {}
+  let id = 0;
+  let activeProject = null;
+  const projects = {};
 
-    const generateId = () => {
-        // return the ID for the project being created and get ready for the next one
-        id += 1
-        return id - 1
-    }
-    
-    const setActiveProject = (project) => {
-        activeProject = project
-    }
+  const generateId = () => {
+    // return the ID for the project being created and get ready for the next one
+    id += 1;
+    return id - 1;
+  };
 
-    const addProject = (projectId, project) => {
-        projects[projectId] = project
-    }
+  const setActiveProject = (project) => {
+    activeProject = project;
+  };
 
-    const getProject = (projectId) => { return projects[projectId] }
+  const addProject = (projectId, project) => {
+    projects[projectId] = project;
+  };
 
-    const getActiveProject = () => { return activeProject }
+  const getProject = (projectId) => projects[projectId];
 
-    return { generateId, addProject, getProject, setActiveProject, getActiveProject }
-})()
+  const getActiveProject = () => activeProject;
 
-export { projectRepoModel }
+  return {
+    generateId, addProject, getProject, setActiveProject, getActiveProject,
+  };
+})();
+
+export default projectRepoModel;
