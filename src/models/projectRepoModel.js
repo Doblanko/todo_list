@@ -23,7 +23,11 @@ const projectRepoModel = (() => {
   const getActiveProject = () => activeProject;
 
   return {
-    generateId, addProject, getProject, setActiveProject, getActiveProject,
+    generateId,
+    addProject,
+    getProject,
+    setActiveProject,
+    getActiveProject,
   };
 })();
 

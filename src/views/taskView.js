@@ -192,7 +192,10 @@ const taskView = (() => {
   };
 
   return {
-    initializeTaskView, openForm, closeForm, renderTasks,
+    initializeTaskView,
+    openForm,
+    closeForm,
+    renderTasks,
   };
 })();
 

@@ -24,7 +24,11 @@ const projectModel = (newName, newID) => {
   const getTasks = () => tasks;
 
   return {
-    getName, getId, addTask, getTasks, generateTaskId,
+    getName,
+    getId,
+    addTask,
+    getTasks,
+    generateTaskId,
   };
 };
 

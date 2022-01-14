@@ -98,7 +98,10 @@ const projectView = (() => {
   };
 
   return {
-    initializeProjectView, openForm, closeForm, createProject,
+    initializeProjectView,
+    openForm,
+    closeForm,
+    createProject,
   };
 })();
 

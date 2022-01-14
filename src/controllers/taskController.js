@@ -37,7 +37,7 @@ const taskController = (() => {
       newDescription,
       newDueDate,
       newPriority,
-      newNotes,
+      newNotes
     );
     activeProject.addTask(newTask);
 
@@ -60,7 +60,8 @@ const taskController = (() => {
   };
 
   return {
-    initTask, createTask,
+    initTask,
+    createTask,
   };
 })();
 

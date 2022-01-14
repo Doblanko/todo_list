@@ -10,16 +10,22 @@ const projectController = (() => {
 
     // unselect any selected classes
     const lastSelectedProject = document.querySelector('.clicked');
-    if (lastSelectedProject) { lastSelectedProject.classList.remove('clicked'); }
+    if (lastSelectedProject) {
+      lastSelectedProject.classList.remove('clicked');
+    }
 
     event.target.classList.add('clicked');
 
     // the id of list elements are project-id
     const activeProjectId = Number(event.target.id.substr(-1));
-    projectRepoModel.setActiveProject(projectRepoModel.getProject(activeProjectId));
+    projectRepoModel.setActiveProject(
+      projectRepoModel.getProject(activeProjectId)
+    );
 
     // render the tasks of the new project
-    taskView.renderTasks(projectRepoModel.getProject(activeProjectId).getTasks());
+    taskView.renderTasks(
+      projectRepoModel.getProject(activeProjectId).getTasks()
+    );
   };
 
   const openNewProjectForm = () => {
@@ -39,7 +45,9 @@ const projectController = (() => {
     projectView.createProject(newProject.getName(), newProject.getId());
 
     // add the event listener for clicks
-    const newProjectView = document.querySelector(`#project-${newProject.getId()}`);
+    const newProjectView = document.querySelector(
+      `#project-${newProject.getId()}`
+    );
     newProjectView.addEventListener('click', selectProject);
 
     // set as the active project by simulating a click event
@@ -67,7 +75,8 @@ const projectController = (() => {
   };
 
   return {
-    initProject, createProject,
+    initProject,
+    createProject,
   };
 })();
 

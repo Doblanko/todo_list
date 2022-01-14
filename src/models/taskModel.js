@@ -1,4 +1,11 @@
-const taskModel = (newName, newId, newDescription, newDueDate, newPriority, newNotes) => {
+const taskModel = (
+  newName,
+  newId,
+  newDescription,
+  newDueDate,
+  newPriority,
+  newNotes
+) => {
   // represents a task object
 
   const name = newName;
@@ -9,7 +16,12 @@ const taskModel = (newName, newId, newDescription, newDueDate, newPriority, newN
   const notes = newNotes;
 
   return {
-    name, id, description, dueDate, priority, notes,
+    name,
+    id,
+    description,
+    dueDate,
+    priority,
+    notes,
   };
 };
 
