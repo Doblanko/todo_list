@@ -11,3 +11,4 @@ This project was to practice CSS/HTML/Javascript/Webpack/npm.
 - Add the ability to scroll
 - Add the ability to delete tasks and projects
 - Add the ability to store tasks and resume where you left off when the website is revisited.
+- Add form validation
