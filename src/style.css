@@ -8,8 +8,8 @@
 html,
 body {
   height: 100%;
-  overflow-y: scroll;
 }
+
 .content {
   height: 100%;
   font-family: sans-serif;
