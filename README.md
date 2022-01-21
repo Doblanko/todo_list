@@ -6,6 +6,8 @@ A website to store Todo's! Click on a project then click 'add task' to add a tas
 
 This project was to practice CSS/HTML/Javascript/Webpack/npm.
 
+You can view the project live here: https://doblanko.github.io/todo_list/
+
 ## Future Updates
 
 - Add the ability to scroll
